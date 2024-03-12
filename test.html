@@ -3,44 +3,13 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>My Papers</title>
+<title>Papers by Ganesh Pawar</title>
 </head>
 <body>
 
-<h1>My Papers</h1>
+<h1>Papers by Ganesh Pawar</h1>
 
-<div id="papers"></div>
-
-<script>
-const papersContainer = document.getElementById('papers');
-
-fetch('https://cors-anywhere.herokuapp.com/https://api.adsabs.harvard.edu/v1/search/query?q=author:"Pawar, Ganesh"&fl=title,author,bibcode&rows=10')
-    .then(response => response.json())
-    .then(data => {
-        if (data.response && data.response.docs) {
-            data.response.docs.forEach(paper => {
-                const title = paper.title[0];
-                const authors = paper.author.join(', ');
-                const bibcode = paper.bibcode;
-
-                const paperElement = document.createElement('div');
-                paperElement.innerHTML = `
-                    <p><strong>Title:</strong> ${title}</p>
-                    <p><strong>Authors:</strong> ${authors}</p>
-                    <p><strong>Bibcode:</strong> ${bibcode}</p>
-                    <hr>
-                `;
-                papersContainer.appendChild(paperElement);
-            });
-        } else {
-            papersContainer.textContent = 'No papers found.';
-        }
-    })
-    .catch(error => {
-        papersContainer.textContent = 'Error fetching data.';
-        console.error('Error fetching data:', error);
-    });
-</script>
+<iframe src="https://ui.adsabs.harvard.edu/search/q=author%3A(%22Pawar%2C%20Ganesh%22%20OR%20%22Pawar%2C%20G.%22%20OR%20%22Pawar%2C%20Ganesh%20N.%22)&sort=date%20desc%2C%20bibcode%20desc&p_=0" width="100%" height="800px" frameborder="0"></iframe>
 
 </body>
 </html>
