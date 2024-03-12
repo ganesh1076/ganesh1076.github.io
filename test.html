@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>My Papers</title>
+</head>
+<body>
+
+<h1>My Papers</h1>
+
+<div id="papers"></div>
+
+<script>
+const papersContainer = document.getElementById('papers');
+
+fetch('https://cors-anywhere.herokuapp.com/https://api.adsabs.harvard.edu/v1/search/query?q=author:"Pawar, Ganesh"&fl=title,author,bibcode&rows=10')
+    .then(response => response.json())
+    .then(data => {
+        if (data.response && data.response.docs) {
+            data.response.docs.forEach(paper => {
+                const title = paper.title[0];
+                const authors = paper.author.join(', ');
+                const bibcode = paper.bibcode;
+
+                const paperElement = document.createElement('div');
+                paperElement.innerHTML = `
+                    <p><strong>Title:</strong> ${title}</p>
+                    <p><strong>Authors:</strong> ${authors}</p>
+                    <p><strong>Bibcode:</strong> ${bibcode}</p>
+                    <hr>
+                `;
+                papersContainer.appendChild(paperElement);
+            });
+        } else {
+            papersContainer.textContent = 'No papers found.';
+        }
+    })
+    .catch(error => {
+        papersContainer.textContent = 'Error fetching data.';
+        console.error('Error fetching data:', error);
+    });
+</script>
+
+</body>
+</html>
