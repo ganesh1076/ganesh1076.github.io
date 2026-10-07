@@ -2,7 +2,7 @@ name: Update Publications
 
 on:
   schedule:
-    - cron: "0 3 * * 1"   # every Monday at 03:00 UTC
+    - cron: "0 3 1,16 * *"  # 1st and 16th of each month at 03:00 UTC (~every 15 days)
   workflow_dispatch:        # also allows manual trigger from GitHub UI
 
 permissions:
@@ -14,10 +14,10 @@ jobs:
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
       - name: Set up Python
-        uses: actions/setup-python@v5
+        uses: actions/setup-python@v6
         with:
           python-version: "3.11"
 

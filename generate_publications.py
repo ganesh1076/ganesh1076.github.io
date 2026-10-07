@@ -25,8 +25,8 @@ from datetime import datetime
 
 # --- Configuration -----------------------------------------------------------
 ORCID        = "0000-0003-3639-9052"
-AUTHOR_NAME  = "Pawar, G"          # substring used to identify author in list
-MAX_PAPERS   = 10
+AUTHOR_NAME  = "Pawar, G."          # substring used to identify author in list
+MAX_PAPERS   = 50
 OUTPUT_FILE  = Path(__file__).parent / "publications.html"
 TEMPLATE_FILE = Path(__file__).parent / "publications.html"
 # -----------------------------------------------------------------------------
